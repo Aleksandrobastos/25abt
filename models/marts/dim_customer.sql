@@ -21,7 +21,11 @@ SELECT
     customer.cust_name,
     customer.cust_address,
     nation.nation_name,
+    region.region_name,
     customer.cust_phone
 FROM customer
 LEFT JOIN nation
     ON (customer.nation_key = nation.nation_key)
+LEFT JOIN region
+    ON (nation_region_key = region.region_key)    
+
