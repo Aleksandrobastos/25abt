@@ -14,6 +14,11 @@ nation AS (
     SELECT
         *
     FROM {{ ref('stg_tpch_sf1__nation') }}
+),
+region AS (
+    SELECT
+        *
+    FROM {{ ref('stg_tpch_sf1__region') }} 
 )
 
 SELECT
@@ -25,7 +30,7 @@ SELECT
     customer.cust_phone
 FROM customer
 LEFT JOIN nation
-    ON (customer.nation_key = nation.nation_key)
+    ON (customer.nation_key = nation.nation_key)  
 LEFT JOIN region
-    ON (nation_region_key = region.region_key)    
+    ON (nation.nation_region_key = region.region_key)    
 
